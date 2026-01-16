@@ -22,8 +22,8 @@ function error
     set_color normal
 end
 
-if not command -q git
-    error "git must be installed"
+if not command -q git; or not command -q rsync
+    error "git and rsync must be installed"
     exit 1
 end
 
@@ -45,9 +45,8 @@ else
     git clone https://github.com/hakimifr/dotfiles $HOME/hakimi-dotfiles
 end
 
-info "creating symlink"
-ln -vfs $HOME/hakimi-dotfiles/.gitconfig $HOME/.gitconfig
-ln -vfs $HOME/hakimi-dotfiles/.config/fish $HOME/.config/fish
+info "syncing dotfiles with rsync"
+rsync -ah --info=progress1 $HOME/hakimi-dotfiles/.config/fish $HOME/.config/fish
 
 info "installing fisher"
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher
