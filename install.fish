@@ -48,7 +48,8 @@ else
 end
 
 info "syncing dotfiles with rsync"
-rsync -ah --info=progress1 $HOME/hakimi-dotfiles/.config/fish $HOME/.config/fish
+mkdir -p $HOME/.config/fish
+rsync -ah --info=progress1 $HOME/hakimi-dotfiles/.config/fish $HOME/.config
 
 info "installing fisher"
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher
