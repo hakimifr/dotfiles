@@ -5,7 +5,8 @@ end
 
 fish_add_path -Pp $HOME/.cargo/bin $HOME/bin $HOME/.local/bin
 
-set -U fish_greeting ""
+set -gx fish_greeting ""
+set -gx fish_prompt_pwd_full_dirs 1000
 set -gx UV_PYTHON 3.14t
 set -gx -- EDITOR zed --wait
 set -gx GIT_PAGER delta
