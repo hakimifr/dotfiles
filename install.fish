@@ -1,0 +1,50 @@
+function info
+    set_color --bold brcyan
+    echo "INFO: "
+    set_color white
+    echo $argv
+    set_color normal
+end
+
+function warn
+    set_color --bold bryellow
+    echo "WARN: "
+    set_color white
+    echo $argv
+    set_color normal
+end
+
+function error
+    set_color --bold brred
+    echo "ERR: "
+    set_color red
+    echo $argv >&2
+    set_color normal
+end
+
+if not command -q git
+    error "git must be installed"
+    exit 1
+end
+
+set -l fish_backup_dir $HOME/fish.bak
+if test -e $HOME/.config/fish
+    info "backing up old fish config dir to $fish_backup_dir"
+    if test -d $fish_backup_dir
+        rm -rf $fish_backup_dir
+    end
+    # mv $HOME/.config/fish $fish_backup_dir  # this will move the symlink instead of copying
+    cp -rv (readlink -f $HOME/.config/fish) $HOME/fish.bak
+end
+
+if test -d $HOME/hakimi-dotfiles
+    info "updating dotfiles"
+    git -C $HOME/hakimi-dotfiles pull --rebase
+else
+    info "cloning dotfiles"
+    git clone https://github.com/hakimifr/dotfiles $HOME/hakimi-dotfiles
+end
+
+info "creating symlink"
+ln -vfs $HOME/hakimi-dotfiles/.gitconfig $HOME/.gitconfig
+ln -vfs $HOME/hakimi-dotfiles/.config/fish $HOME/.config/fish
