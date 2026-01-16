@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function info
     set_color --bold brcyan
     echo -n "INFO: "
