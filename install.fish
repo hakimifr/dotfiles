@@ -1,6 +1,6 @@
 function info
     set_color --bold brcyan
-    echo "INFO: "
+    echo -n "INFO: "
     set_color white
     echo $argv
     set_color normal
@@ -8,7 +8,7 @@ end
 
 function warn
     set_color --bold bryellow
-    echo "WARN: "
+    echo -n "WARN: "
     set_color white
     echo $argv
     set_color normal
@@ -16,7 +16,7 @@ end
 
 function error
     set_color --bold brred
-    echo "ERR: "
+    echo -n "ERR: "
     set_color red
     echo $argv >&2
     set_color normal
@@ -28,7 +28,7 @@ if not command -q git
 end
 
 set -l fish_backup_dir $HOME/fish.bak
-if test -e $HOME/.config/fish
+if test -e $HOME/.config/fish; and not test -d $fish_backup_dir
     info "backing up old fish config dir to $fish_backup_dir"
     if test -d $fish_backup_dir
         rm -rf $fish_backup_dir
@@ -48,3 +48,9 @@ end
 info "creating symlink"
 ln -vfs $HOME/hakimi-dotfiles/.gitconfig $HOME/.gitconfig
 ln -vfs $HOME/hakimi-dotfiles/.config/fish $HOME/.config/fish
+
+info "installing fisher"
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher
+
+info "restarting fish"
+exec fish

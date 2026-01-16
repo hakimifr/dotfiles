@@ -1,0 +1,4 @@
+*
+!.gitignore
+!fish_prompt.fish
+!t7unmount.fish
