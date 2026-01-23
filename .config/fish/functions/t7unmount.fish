@@ -26,9 +26,9 @@ function t7unmount
 end
 
 function _t7_info
-    set_color brcyan; and echo -n "t7unmount: "; and set_color cyan; and echo $argv; and set_color normal
+    set_color brcyan; and echo -n "t7util: "; and set_color cyan; and echo $argv; and set_color normal
 end
 
 function _t7_error
-    set_color brred; and echo -n "t7unmount: "; and set_color red; and echo $argv; and set_color normal
+    set_color brred; and echo -n "t7util: "; and set_color red; and echo $argv; and set_color normal
 end
