@@ -43,3 +43,9 @@ abbr -a glo git log --oneline | head -n5
 abbr -a gp git push
 abbr -a gpf git push --force-with-lease
 abbr -a gpff git push --force
+
+##############
+# TOOLS INIT #
+##############
+
+zoxide init fish | source
