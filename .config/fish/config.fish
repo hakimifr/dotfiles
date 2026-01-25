@@ -49,3 +49,4 @@ abbr -a gpff git push --force
 ##############
 
 zoxide init fish | source
+source (/usr/bin/starship init fish --print-full-init | psub)
