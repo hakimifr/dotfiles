@@ -10,3 +10,5 @@
 	helper = !/usr/bin/gh auth git-credential
 [commit]
 	gpgSign = true
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519_git

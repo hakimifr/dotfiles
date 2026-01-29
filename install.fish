@@ -48,8 +48,8 @@ else
 end
 
 info "syncing dotfiles with rsync"
-mkdir -p $HOME/.config/fish
-rsync -ah --info=progress1 $HOME/hakimi-dotfiles/.config/fish $HOME/.config
+mkdir -p $HOME/.config
+rsync -ah --info=progress1 $HOME/hakimi-dotfiles/.config $HOME
 
 if not functions -q fisher
     info "installing fisher"
